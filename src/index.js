@@ -1,9 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './containers/App';
-import registerServiceWorker from './registerServiceWorker';
-import 'tachyons'; 
+import { Provider as ReduxProvider } from 'react-redux';
+import 'tachyons';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './containers/App';
+import configureStore from './redux/store/index';
+import registerServiceWorker from './registerServiceWorker';
+
+import './index.css';
+
+const store = configureStore();
+const rootElement = document.getElementById('root');
+
+ReactDOM.render(
+  <ReduxProvider store={store}>
+    <App />
+  </ReduxProvider>,
+  rootElement
+);
 registerServiceWorker();
