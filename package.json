@@ -1,7 +1,7 @@
 {
   "name": "robofriends",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "https://chengxufeng1994.github.io/robofriends/",
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
