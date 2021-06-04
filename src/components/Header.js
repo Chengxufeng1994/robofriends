@@ -3,10 +3,6 @@ import React from 'react';
 
 // class component
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   shouldComponentUpdate(nextProp, nextState) {
     return false;
   }
