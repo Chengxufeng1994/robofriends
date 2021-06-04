@@ -1,11 +1,12 @@
 import React from 'react';
 import Card from './Card';
+import { IRobot } from '../redux/reducers/fetchRobotsReducer';
 
-const CardList = ({ robots }) => {
+const CardList = ({ robots }: { robots: Array<IRobot> }) => {
   console.log('[Render CardLists]');
   return (
     <div>
-      {robots.map((user, i) => {
+      {robots.map((user: any, i: number) => {
         return (
           <Card
             key={i}

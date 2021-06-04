@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 
 import Header from '../components/Header';
 import CardList from '../components/CardList';
@@ -8,10 +8,14 @@ import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
 
 import { fetchRobots, filterRobots } from '../redux/actions/index';
+import { IRobot } from '../redux/reducers/fetchRobotsReducer';
+import { RootState } from '../redux/store';
 
 import './App.css';
 
-const App = (props) => {
+interface AppProps extends PropsFromRedux {}
+
+const App = (props: AppProps) => {
   const { robots, isLoading, error, searchField, fetchRobots, filterRobots } =
     props;
 
@@ -19,7 +23,7 @@ const App = (props) => {
     fetchRobots();
   }, [fetchRobots]);
 
-  const onSearchChange = (event) => {
+  const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
     } = event;
@@ -30,7 +34,7 @@ const App = (props) => {
     throw new Error('Something wrong...');
   }
 
-  const filteredRobots = robots.filter((robot) => {
+  const filteredRobots = robots.filter((robot: IRobot) => {
     return robot.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
@@ -52,8 +56,7 @@ const App = (props) => {
 };
 
 // react-redux
-const mapStateToProps = (state, ownProps) => {
-  // ... computed data from state and optionally ownProps
+const mapStateToProps = (state: RootState) => {
   return {
     robots: state.fetchRobot.robots,
     isLoading: state.fetchRobot.isLoading,
@@ -61,11 +64,11 @@ const mapStateToProps = (state, ownProps) => {
     searchField: state.filterRobot.searchField,
   };
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   // ... normally is an object full of action creators
   return {
     fetchRobots: () => dispatch(fetchRobots()),
-    filterRobots: (value) => dispatch(filterRobots(value)),
+    filterRobots: (value: string) => dispatch(filterRobots(value)),
   };
 };
 
@@ -73,5 +76,7 @@ const mapDispatchToProps = (dispatch) => {
 const connectToStore = connect(mapStateToProps, mapDispatchToProps);
 // and that function returns the connected, wrapper component:
 const ConnectedComponent = connectToStore(App);
+
+type PropsFromRedux = ConnectedProps<typeof connectToStore>;
 
 export default ConnectedComponent;

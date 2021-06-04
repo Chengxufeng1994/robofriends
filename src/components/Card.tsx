@@ -1,6 +1,12 @@
 import React from 'react';
 
-const Card = ({ name, email, id }) => {
+type CardProps = {
+  name: string;
+  email: string; 
+  id: number 
+};
+
+const Card = ({ name, email, id }: CardProps) => {
   // console.log('[Render Card]');
   return (
     <div className="tc grow bg-light-green br3 pa3 ma2 dib bw2 shadow-5">

@@ -1,14 +1,15 @@
 import React from 'react';
 // import CounterButton from './CounterButton';
-
+type HeaderProps = {};
+type HeaderState = {};
 // class component
 class Header extends React.Component {
-  shouldComponentUpdate(nextProp, nextState) {
+  shouldComponentUpdate(nextProp: HeaderProps, nextState: HeaderState) {
     return false;
   }
 
   render() {
-    console.log('[Render Header]');
+    // console.log('[Render Header]');
     return (
       <>
         <h1 className="f1">RoboFriends</h1>
