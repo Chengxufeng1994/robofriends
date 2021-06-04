@@ -2,6 +2,7 @@ import {
   createStore,
   applyMiddleware,
   DeepPartial,
+  Middleware,
   StateFromReducersMapObject /** , compose */,
 } from 'redux';
 import { createLogger } from 'redux-logger';
@@ -19,8 +20,15 @@ const logger = createLogger();
 export default function configureStore(
   preloadedState?: DeepPartial<preloadedState>
 ) {
-  const middlewares = [logger, ThunkMiddleware];
-  const middlewareEnhancer = applyMiddleware(...middlewares);
+  let middleware: Array<Middleware> = [ThunkMiddleware];
+
+  if (process.env.NODE_ENV === 'development') {
+    middleware = [...middleware, logger];
+  } else {
+    middleware = [...middleware];
+  }
+
+  const middlewareEnhancer = applyMiddleware(...middleware);
 
   const enhancers = [middlewareEnhancer, monitorReducerEnhancer];
   const composedEnhancers = composeWithDevTools(...enhancers);
