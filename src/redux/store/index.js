@@ -1,10 +1,10 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { createLogger } from 'redux-logger'
+import { createStore, applyMiddleware /** compose */ } from 'redux';
+import { createLogger } from 'redux-logger';
 import ThunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import monitorReducerEnhancer from '../enhancers/monitorReducerEnhancer';
-import loggerMiddleware from '../middleware/logger';
+// import loggerMiddleware from '../middleware/logger';
 import rootReducer from '../reducers/index';
 
 const logger = createLogger();
