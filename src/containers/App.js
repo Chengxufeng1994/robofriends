@@ -17,7 +17,7 @@ const App = (props) => {
 
   useEffect(() => {
     fetchRobots();
-  }, []);
+  }, [fetchRobots]);
 
   const onSearchChange = (event) => {
     const {
