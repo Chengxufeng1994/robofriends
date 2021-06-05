@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-
-import Header from '../components/Header';
-import CardList from '../components/CardList';
-import SearchBox from '../components/SearchBox';
-import Scroll from '../components/Scroll';
-import ErrorBoundary from '../components/ErrorBoundary';
+import loadable from '@loadable/component';
 
 import { fetchRobots, filterRobots } from '../redux/actions/index';
 import { IRobot } from '../redux/reducers/fetchRobotsReducer';
@@ -14,6 +9,12 @@ import { RootState } from '../redux/store';
 import './App.css';
 
 interface AppProps extends PropsFromRedux {}
+
+const Header = loadable(() => import('../components/Header'));
+const CardList = loadable(() => import('../components/CardList'));
+const SearchBox = loadable(() => import('../components/SearchBox'));
+const Scroll = loadable(() => import('../components/Scroll'));
+const ErrorBoundary = loadable(() => import('../components/ErrorBoundary'));
 
 const App = (props: AppProps) => {
   const { robots, isLoading, error, searchField, fetchRobots, filterRobots } =
