@@ -9,11 +9,15 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false,
-  };
+  constructor(props: Props) {
+    super(props);
 
-  public static getDerivedStateFromError(_: Error): State {
+    this.state = {
+      hasError: false,
+    };
+  }
+
+  static getDerivedStateFromError(_: Error): State {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
