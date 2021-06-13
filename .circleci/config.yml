@@ -7,15 +7,8 @@ jobs:
       - checkout
       - run: npm install
       - run: CI=true npm run build
-  hi-there:
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - checkout
-      - run: echo "Hello!"
 workflows:
   version: 2
   build:
     jobs:
       - build
-      - hi-there
