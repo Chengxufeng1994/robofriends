@@ -55,12 +55,14 @@
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "clean": "rm -rf node_modules build",
-    "predeploy": "npm run build",
+    "git-reset": "git reset --hard HEAD",
+    "git-clean": "git clean -d -x -e node_modules -e packages -f",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start --mode=production",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
     "prepare": "husky install"
   },
   "engines": {
