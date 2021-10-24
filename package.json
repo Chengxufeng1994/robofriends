@@ -41,7 +41,11 @@
     "workbox-streams": "^6.1.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
     "@types/loadable__component": "^5.13.3",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^6.0.0",
     "prettier": "2.3.1",
     "pretty-quick": "^3.1.0",
@@ -51,12 +55,14 @@
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "clean": "rm -rf node_modules build",
-    "predeploy": "npm run build",
+    "git-reset": "git reset --hard HEAD",
+    "git-clean": "git clean -d -x -e node_modules -e packages -f",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start --mode=production",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
     "prepare": "husky install"
   },
   "engines": {
@@ -74,5 +80,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
