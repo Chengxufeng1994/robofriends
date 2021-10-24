@@ -47,9 +47,10 @@
     "pretty-quick": "^3.1.0",
     "redux-devtools-extension": "^2.13.9"
   },
+  "main": "src/index.tsx",
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "clean": "rm -rf node_modules package-lock.json",
+    "clean": "rm -rf node_modules build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start --mode=production",
@@ -57,6 +58,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prepare": "husky install"
+  },
+  "engines": {
+    "node": ">= 10",
+    "npm": ">= 6"
   },
   "browserslist": {
     "production": [
